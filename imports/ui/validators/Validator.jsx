@@ -197,6 +197,8 @@ export default class Validator extends Component{
         else{
             if (this.props.validatorExist){
 
+                console.log(new BigNumber(10));
+
                 let moniker = (this.props.validator.description&&this.props.validator.description.moniker)?this.props.validator.description.moniker:this.props.validator.address;
                 let identity = (this.props.validator.description&&this.props.validator.description.identity)?this.props.validator.description.identity:"";
                 let website = (this.props.validator.description&&this.props.validator.description.website)?this.props.validator.description.website:undefined;
@@ -258,9 +260,9 @@ export default class Validator extends Component{
                                     currentDelegation={this.state.currentUserDelegation}
                                     history={this.props.history} stakingParams={this.props.chainStatus.staking?this.props.chainStatus.staking.params:null}/>:''}
                                 <Row>
-                                    {this.props.validator.tokens?<Col xs={12}><h1 className="display-4 voting-power"><Badge color="primary" >{(new BigNumber(this.props.validator.tokens)).dividedBy(new BigNumber(Meteor.settings.public.powerReduction)).toFormat(0)()}</Badge></h1><span>(~{(new BigNumber(this.props.validator.tokens)).dividedBy(new BigNumber(Meteor.settings.public.powerReduction)).dividedBy(this.props.chainStatus.activeVotingPower).times(100).toFormat(2)}%)</span></Col>:''}
+                                    {this.props.validator.tokens?<Col xs={12}><h1 className="display-4 voting-power"><Badge color="primary" >{(new BigNumber(this.props.validator.tokens)).dividedBy(new BigNumber(Meteor.settings.public.powerReduction)).toFormat(0)()}</Badge></h1><span>(~{(new BigNumber(this.props.validator.tokens)).dividedBy(new BigNumber(Meteor.settings.public.powerReduction)).dividedBy(new BigNumber(this.props.chainStatus.activeVotingPower)).times(100).toFormat(2)}%)</span></Col>:''}
                                     <Col sm={4} className="label"><T>validators.selfDelegationRatio</T></Col>
-                                    <Col sm={8} className="value">{this.props.validator.self_delegation?<span>{numbro(this.props.validator.self_delegation).format("0,0.00%")} <small className="text-secondary">(~{numbro(BigNumber(this.props.validator.tokens).dividedBy(Meteor.settings.public.powerReduction).times(BigNumber(this.props.validator.self_delegation))).format({thousandSeparated: true,mantissa:0})} {Coin.StakingCoin.displayName})</small></span>:'N/A'}</Col>
+                                    <Col sm={8} className="value">{this.props.validator.self_delegation?<span>{numbro(this.props.validator.self_delegation).format("0,0.00%")} <small className="text-secondary">(~{numbro((new BigNumber(this.props.validator.tokens)).dividedBy(new BigNumber(Meteor.settings.public.powerReduction)).times(new BigNumber(this.props.validator.self_delegation)).toNumber()).format({thousandSeparated: true,mantissa:0})} {Coin.StakingCoin.displayName})</small></span>:'N/A'}</Col>
                                     <Col sm={4} className="label"><T>validators.proposerPriority</T></Col>
                                     <Col sm={8} className="value">{this.props.validator.proposer_priority?numbro(this.props.validator.proposer_priority).format('0,0'):'N/A'}</Col>
                                     <Col sm={4} className="label"><T>validators.delegatorShares</T></Col>
@@ -268,7 +270,7 @@ export default class Validator extends Component{
                                     {(this.state.currentUserDelegation)?<Col sm={4} className="label"><T>validators.userDelegateShares</T></Col>:''}
                                     {(this.state.currentUserDelegation)?<Col sm={8} className="value">{(new BigNumber(this.state.currentUserDelegation.delegation.shares)).dividedBy(new BigNumber(Meteor.settings.public.powerReduction)).toFormat(2)}</Col>:''}
                                     <Col sm={4} className="label"><T>validators.tokens</T></Col>
-                                    <Col sm={8} className="value">{BigNumber(this.props.validator.tokens).toFormat(2)}</Col>
+                                    <Col sm={8} className="value">{(new BigNumber(this.props.validator.tokens)).toFormat(2)}</Col>
                                     {(this.props.validator.jailed)?<Col xs={12} >
                                         <Row><Col md={4} className="label"><T>validators.unbondingHeight</T></Col>
                                             <Col md={8} className="value">{numbro(this.props.validator.unbonding_height).format('0,0')}</Col>
