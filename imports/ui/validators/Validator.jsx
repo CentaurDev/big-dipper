@@ -197,6 +197,10 @@ export default class Validator extends Component{
         else{
             if (this.props.validatorExist){
 
+                console.log("Validator: ", this.props.validator);
+
+                console.log((new BigNumber(this.props.validator.tokens)).dividedBy(new BigNumber(Meteor.settings.public.powerReduction)).toString());
+
                 let moniker = (this.props.validator.description&&this.props.validator.description.moniker)?this.props.validator.description.moniker:this.props.validator.address;
                 let identity = (this.props.validator.description&&this.props.validator.description.identity)?this.props.validator.description.identity:"";
                 let website = (this.props.validator.description&&this.props.validator.description.website)?this.props.validator.description.website:undefined;
