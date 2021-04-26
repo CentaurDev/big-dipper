@@ -258,7 +258,7 @@ export default class Validator extends Component{
                                     currentDelegation={this.state.currentUserDelegation}
                                     history={this.props.history} stakingParams={this.props.chainStatus.staking?this.props.chainStatus.staking.params:null}/>:''}
                                 <Row>
-                                    {this.props.validator.tokens?<Col xs={12}><h1 className="display-4 voting-power"><Badge color="primary" >{BigNumber(this.props.validator.tokens).dividedBy(BigNumber(Meteor.settings.public.powerReduction)).toFormat(0)()}</Badge></h1><span>(~{BigNumber(this.props.validator.tokens).dividedBy(BigNumbe(Meteor.settings.public.powerReduction)).dividedBy(this.props.chainStatus.activeVotingPower).times(100).toFormat(2)}%)</span></Col>:''}
+                                    {this.props.validator.tokens?<Col xs={12}><h1 className="display-4 voting-power"><Badge color="primary" >{(new BigNumber(this.props.validator.tokens)).dividedBy(new BigNumber(Meteor.settings.public.powerReduction)).toFormat(0)()}</Badge></h1><span>(~{(new BigNumber(this.props.validator.tokens)).dividedBy(new BigNumber(Meteor.settings.public.powerReduction)).dividedBy(this.props.chainStatus.activeVotingPower).times(100).toFormat(2)}%)</span></Col>:''}
                                     <Col sm={4} className="label"><T>validators.selfDelegationRatio</T></Col>
                                     <Col sm={8} className="value">{this.props.validator.self_delegation?<span>{numbro(this.props.validator.self_delegation).format("0,0.00%")} <small className="text-secondary">(~{numbro(BigNumber(this.props.validator.tokens).dividedBy(Meteor.settings.public.powerReduction).times(BigNumber(this.props.validator.self_delegation))).format({thousandSeparated: true,mantissa:0})} {Coin.StakingCoin.displayName})</small></span>:'N/A'}</Col>
                                     <Col sm={4} className="label"><T>validators.proposerPriority</T></Col>
@@ -266,7 +266,7 @@ export default class Validator extends Component{
                                     <Col sm={4} className="label"><T>validators.delegatorShares</T></Col>
                                     <Col sm={8} className="value">{numbro(this.props.validator.delegator_shares).format('0,0.00')}</Col>
                                     {(this.state.currentUserDelegation)?<Col sm={4} className="label"><T>validators.userDelegateShares</T></Col>:''}
-                                    {(this.state.currentUserDelegation)?<Col sm={8} className="value">{BigNumber(this.state.currentUserDelegation.delegation.shares).dividedBy(BigNumber(Meteor.settings.public.powerReduction)).toFormat(2)}</Col>:''}
+                                    {(this.state.currentUserDelegation)?<Col sm={8} className="value">{(new BigNumber(this.state.currentUserDelegation.delegation.shares)).dividedBy(new BigNumber(Meteor.settings.public.powerReduction)).toFormat(2)}</Col>:''}
                                     <Col sm={4} className="label"><T>validators.tokens</T></Col>
                                     <Col sm={8} className="value">{BigNumber(this.props.validator.tokens).toFormat(2)}</Col>
                                     {(this.props.validator.jailed)?<Col xs={12} >
