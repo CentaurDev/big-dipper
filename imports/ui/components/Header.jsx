@@ -191,7 +191,7 @@ export default class Header extends Component {
                         <NavItem>
                             <NavLink tag={Link} to="/proposals"><T>navbar.proposals</T></NavLink>
                         </NavItem>
-                        <NavItem>
+                        {/*<NavItem>
                             <NavLink tag={Link} to="/voting-power-distribution"><T>navbar.votingPower</T></NavLink>
                         </NavItem>
                         <NavItem id="user-acconut-icon">
@@ -216,7 +216,7 @@ export default class Header extends Component {
                                     </span>
                                 </span>}
                             <LedgerModal isOpen={this.state.isSignInOpen} toggle={this.toggleSignIn} refreshApp={this.props.refreshApp} handleLoginConfirmed={this.shouldLogin()?this.handleLoginConfirmed:null}/>
-                        </NavItem>
+                        </NavItem>*/}
                         <NavItem>
                             <UncontrolledDropdown inNavbar>
                                 <DropdownToggle nav caret>

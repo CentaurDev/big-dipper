@@ -164,7 +164,7 @@ export default class ChainStatus extends React.Component {
                         </Col>
                         <Col lg={3} md={6}>
                             <Card body>
-                                <UncontrolledDropdown size="sm" className="more">
+                                {/*<UncontrolledDropdown size="sm" className="more">
                                     <DropdownToggle>
                                         <i className="material-icons">more_vert</i>
                                     </DropdownToggle>
@@ -174,7 +174,7 @@ export default class ChainStatus extends React.Component {
                                         {this.props.status.lastHourBlockTime?<DropdownItem onClick={(e) => this.handleSwitchBlockTime("h", e)}><T>chainStatus.lastHour</T></DropdownItem>:''}
                                         {this.props.status.lastDayBlockTime?<DropdownItem onClick={(e) => this.handleSwitchBlockTime("d", e)}><T>chainStatus.lastDay</T> </DropdownItem>:''}
                                     </DropdownMenu>
-                                </UncontrolledDropdown>
+                                </UncontrolledDropdown>*/}
                                 <CardTitle><T>chainStatus.averageBlockTime</T> ({this.state.blockTimeText})</CardTitle>
                                 <CardText>
                                     <span className="display-4 value text-primary">{this.state.averageBlockTime}</span><T>chainStatus.seconds</T>
@@ -189,7 +189,7 @@ export default class ChainStatus extends React.Component {
                         </Col>
                         <Col lg={3} md={6}>
                             <Card body>
-                                <UncontrolledDropdown size="sm" className="more">
+                                {/*<UncontrolledDropdown size="sm" className="more">
                                     <DropdownToggle>
                                         <i className="material-icons">more_vert</i>
                                     </DropdownToggle>
@@ -198,7 +198,7 @@ export default class ChainStatus extends React.Component {
                                         {this.props.status.lastHourVotingPower?<DropdownItem onClick={(e) => this.handleSwitchVotingPower("h", e)}><T>chainStatus.lastHour</T></DropdownItem>:''}
                                         {this.props.status.lastDayVotingPower?<DropdownItem onClick={(e) => this.handleSwitchVotingPower("d", e)}><T>chainStatus.lastDay</T></DropdownItem>:''}
                                     </DropdownMenu>
-                                </UncontrolledDropdown>
+                                </UncontrolledDropdown>*/}
                                 <CardTitle><T>chainStatus.onlineVotingPower</T> ({this.state.votingPowerText})</CardTitle>
                                 <CardText><span className="display-4 value text-primary">{this.state.votingPower}</span><T percent={numbro(this.state.bondedTokens/this.state.totalSupply).format("0.00%")} totalStakes={numbro(this.state.totalSupply/Coin.StakingCoin.fraction).format("0.00a")} denom={Coin.StakingCoin.displayName} denomPlural={Coin.StakingCoin.displayNamePlural}>chainStatus.fromTotalStakes</T></CardText>
                             </Card>
