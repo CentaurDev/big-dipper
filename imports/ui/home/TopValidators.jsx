@@ -6,6 +6,19 @@ import numbro from 'numbro';
 import Avatar from '../components/Avatar.jsx';
 import i18n from 'meteor/universe:i18n';
 
+import BigNumber from "bignumber.js";
+const fmt = {
+  prefix: '',
+  decimalSeparator: '.',
+  groupSeparator: ',',
+  groupSize: 3,
+  secondaryGroupSize: 0,
+  fractionGroupSeparator: ' ',
+  fractionGroupSize: 0,
+  suffix: ''
+}
+BigNumber.config({ EXPONENTIAL_AT: 1e+9, FORMAT: fmt });
+
 const T = i18n.createComponent();
 export default class TopValidators extends Component{
     constructor(props){
@@ -30,7 +43,7 @@ export default class TopValidators extends Component{
                                 <Avatar moniker={validator.description.moniker} profileUrl={validator.profile_url} address={validator.address} list={true} />
                                 {validator.description.moniker}
                             </Link></td>
-                            <td className="voting-power">{numbro(Math.floor(validator.tokens/Meteor.settings.public.powerReduction)).format('0,0')}</td>
+                            <td className="voting-power">{BigNumber(validator.voting_power).toFormat(0)}</td>
                             <td><Progress animated value={validator.uptime}>{validator.uptime?validator.uptime.toFixed(2):0}%</Progress></td>
                         </tr>
                     })

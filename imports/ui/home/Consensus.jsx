@@ -44,6 +44,7 @@ export default class Consensus extends Component{
         }
         else{
             if (this.props.consensusExist && this.props.consensus.prevotes){
+                console.log(this.props.consensus);
                 let proposer = this.props.consensus.proposer();
                 let moniker = (proposer&&proposer.description&&proposer.description.moniker)?proposer.description.moniker:this.props.consensus.proposerAddress;
                 let profileUrl = (proposer&&proposer.profile_url) || '';
